@@ -81,7 +81,6 @@ class War {
 
 
 	vikingAttack() {
-
 		return this.attack(this.vikingArmy, this.saxonArmy)
 	}
 
@@ -90,8 +89,7 @@ class War {
 	}
 
 	showStatus() {
-		if (!this.vikingArmy.length)
-			return 'Saxons have fought for their lives and survived another day...';
+		if (!this.vikingArmy.length) return 'Saxons have fought for their lives and survived another day...';
 
 		if (!this.saxonArmy.length) return 'Vikings have won the war of the century!';
 
