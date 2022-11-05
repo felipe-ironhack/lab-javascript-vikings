@@ -9,7 +9,7 @@
 We have learned Object-oriented programming and how `class` and inheritance work in JavaScript. Now let's work with our Viking friends, applying all of the concepts we have just learned.
 
 <br>
-
+v
 ## Requirements
 
 - Fork this repo.

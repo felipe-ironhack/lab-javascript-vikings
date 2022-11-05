@@ -60,41 +60,33 @@ class War {
 		this.saxonArmy.push(newSaxon);
 	}
 
-	getRandomViking() {
-		return Math.floor(Math.random() * this.vikingArmy.length);
+	getRandom(army) {
+		return Math.floor(Math.random() * army.length);
 	}
 
-	getRandomSaxon() {
-		return Math.floor(Math.random() * this.saxonArmy.length);
-	}
+	attack(attackingArmy, defendingArmy){
+		const randomAttacker = attackingArmy[this.getRandom(attackingArmy)]
 
-	vikingAttack() {
-		const randomViking = this.vikingArmy[this.getRandomViking()];
+		const randomDefenderIndex = this.getRandom(defendingArmy)
+		const randomDefender = defendingArmy[randomDefenderIndex]
 
-		const saxonIndex = this.getRandomSaxon();
-		const randomSaxon = this.saxonArmy[saxonIndex];
+		const result = randomDefender.receiveDamage(randomAttacker.attack());
 
-		const result = randomSaxon.receiveDamage(randomViking.attack());
-
-		if (randomSaxon.health <= 0) {
-			this.saxonArmy.splice(saxonIndex, 1);
+		if (randomDefender.health <= 0) {
+			defendingArmy.splice(randomDefenderIndex, 1)
 		}
 
-		return result;
+		return result
+	}
+
+
+	vikingAttack() {
+
+		return this.attack(this.vikingArmy, this.saxonArmy)
 	}
 
 	saxonAttack() {
-		const randomSaxon = this.saxonArmy[this.getRandomSaxon()];
-		const vikingIndex = this.getRandomViking();
-		const randomViking = this.vikingArmy[vikingIndex];
-
-		const result = randomViking.receiveDamage(randomSaxon.attack());
-
-		if (randomViking.health <= 0) {
-			this.vikingArmy.splice(vikingIndex, 1);
-		}
-
-		return result;
+		return this.attack(this.saxonArmy, this.vikingArmy)
 	}
 
 	showStatus() {
